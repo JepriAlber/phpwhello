@@ -33,14 +33,14 @@ $employees  = $crud->allData('employee',$employeeId);
         <div class="row justify-content-center">
         <h3 class="mt-4">List Employee</h3>
             <?php foreach($employees as $em): ?>
-                <div class="card" style="width: 28rem;">
+                <div class="card shadow" style="width: 28rem;">
                 <div class="card-header">
                     Name    : <?=$em->name;?> 
-                </div>
+                </div class="card-body">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Age         : <?=$em->age;?> </li>
                         <li class="list-group-item">Devision    : <?=$em->devision;?> </li>
-                        <li class="list-group-item">Salery      : Rp.<?=number_format($em->salery, 0, ",", ".");?> </li>
+                        <li class="list-group-item">Salary      : Rp.<?=number_format($em->salary, 0, ",", ".");?> </li>
                         <li class="list-group-item"><a href="index.php" class="btn btn-warning btn-sm">Back</a></li>
                     </ul>
                 </div>

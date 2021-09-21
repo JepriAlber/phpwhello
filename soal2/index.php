@@ -22,37 +22,76 @@ $employees  = $crud->allData('employee');
   
     <div class="container">
         
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-6">
-                <h3 class="mt-4">Add Employee</h3>
+                
+
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h3>Add Employee</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <form class="row g-3" method="POST" action="saveEmployee.php">
+                        <div class="col-12">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="age" class="form-label">Age</label>
+                            <input type="text" class="form-control" id="age" name="age" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="devision" class="form-label">Devision</label>
+                            <input type="text" class="form-control" id="devision" name="devision" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="salary" class="form-label">Salary</label>
+                            <input type="text" class="form-control" id="salary" name="salary" required>
+                        </div>
+                        <div class="col-12 d-grid">
+                            <button type="submit" name="save" class="btn btn-primary">Save</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
 
             </div>
             <div class="col-6">
-                <h3 class="mt-4">List Employees</h3>
-                    <div class="table-responsive">
-                        <table  class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <td>No</td>
-                                    <td>Name</td>
-                                    <td>Age</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $no =1; 
-                                 foreach($employees as $em): ?>
-                                    <tr>
-                                        <td><?=$no++;?></td>
-                                        <td><?=$em->name;?></td>
-                                        <td><?=$em->age;?></td>
-                                        <td><a href="detail.php?employee=<?=$em->employee_id;?>" class="btn btn-info btn-sm">Detail</a></td>
-                                    </tr>
-                                <?php endforeach ?>
-                            </tbody>
-                        </table>
+
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h3>List Employees</h3>
                     </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table  class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Name</td>
+                                        <td>Age</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no =1; 
+                                    foreach($employees as $em): ?>
+                                        <tr>
+                                            <td><?=$no++;?></td>
+                                            <td><?=$em->name;?></td>
+                                            <td><?=$em->age;?></td>
+                                            <td><a href="detail.php?employee=<?=$em->employee_id;?>" class="btn btn-info btn-sm">Detail</a></td>
+                                        </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
