@@ -14,7 +14,7 @@
 
         //---------simpan data dengan method/function store---------
             $result = $crud->store('employee',$arrData);
-
+            //---------jika nilai baliknya true maka beri pesan success------
             if ($result) {
                 echo "<script>window.location='index.php';alert('Success')</script>";
             }else{

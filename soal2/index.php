@@ -25,7 +25,6 @@ $employees  = $crud->allData('employee');
         <div class="row mt-5">
             <div class="col-6">
                 
-
                 <div class="card shadow">
                     <div class="card-header">
                         <h3>Add Employee</h3>
@@ -49,13 +48,13 @@ $employees  = $crud->allData('employee');
                             <label for="salary" class="form-label">Salary</label>
                             <input type="text" class="form-control" id="salary" name="salary" required>
                         </div>
-                        <div class="col-12 d-grid">
+                        <div class="col-12">
+                            <button type="reset" class="btn btn-secondary">Reset</button>
                             <button type="submit" name="save" class="btn btn-primary" onclick="return confirm('Are You Sure?')">Save</button>
                         </div>
                         </form>
                     </div>
                 </div>
-
 
             </div>
             <div class="col-6">
@@ -72,7 +71,7 @@ $employees  = $crud->allData('employee');
                                         <td>No</td>
                                         <td>Name</td>
                                         <td>Age</td>
-                                        <td>Action</td>
+                                        <td align="center">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,7 +82,13 @@ $employees  = $crud->allData('employee');
                                             <td><?=$no++;?></td>
                                             <td><?=$em->name;?></td>
                                             <td><?=$em->age;?></td>
-                                            <td><a href="detail.php?employee=<?=$em->employee_id;?>" class="btn btn-info btn-sm">Detail</a></td>
+                                            <td align="center">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a href="detail.php?employee=<?=$em->employee_id;?>" class="btn btn-info btn-sm">Detail</a>
+                                                <a href="edit.php?employee=<?=$em->employee_id;?>" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="deleteEmployee.php?employee=<?=$em->employee_id;?>" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                                            </div>
+                                            </td>
                                         </tr>
                                     <?php endforeach ?>
                                 </tbody>

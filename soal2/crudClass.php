@@ -30,12 +30,17 @@ require_once "connectionClass.php";
 
         public function store($table, $data)
         {
+            // -----ambil key array untuk dijadikan nama kolom pata tabel yang ingin di inputkan-----
             $columns        = implode(", ",array_keys($data));
-            $escapedValues  = array_values($data);
-                foreach ($escapedValues as $key => $data) {
-                    $escapedValues[$key] = "'".$this->conn->real_escape_string($data)."'";
+
+            $tempValues  = array_values($data);
+
+                foreach ($tempValues as $key => $data) {
+                    // ----pastikan data yang akan disimpan aman---------
+                    $tempValues[$key] = "'".$this->conn->real_escape_string($data)."'";
                 } 
-            $values         = implode(",",$escapedValues); 
+
+            $values         = implode(",",$tempValues); 
 
             $query          = "INSERT INTO $table ($columns) VALUES ($values)";
             $result         = $this->conn->query($query);
@@ -45,6 +50,19 @@ require_once "connectionClass.php";
                 }else{
                     return False;
                 }
+        }
+
+        public function delete($table,$id,$valueId)
+        {
+            $query      = "DELETE FROM $table WHERE $id='".$valueId."'";
+            $result     = $this->conn->query($query);
+           
+                if ($result) {
+                    return True;
+                } else {
+                    return False;
+                }
+                
         }
 
     }
