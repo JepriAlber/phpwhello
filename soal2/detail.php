@@ -1,7 +1,7 @@
 <?php 
 // ---------jika user membuka halaman detail tanpa mengetahui id employee maka kembalikan ke halaman awal------
 if (!isset($_GET['employee'])) {
-    echo"<script>window.location='index.php'</script>";
+    echo "<script>window.location='index.php';</script>";
 }
 
 require_once "crudClass.php"; 

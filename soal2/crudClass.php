@@ -28,6 +28,25 @@ require_once "connectionClass.php";
             return $rows;
         }
 
+        public function store($table, $data)
+        {
+            $columns        = implode(", ",array_keys($data));
+            $escapedValues  = array_values($data);
+                foreach ($escapedValues as $key => $data) {
+                    $escapedValues[$key] = "'".$this->conn->real_escape_string($data)."'";
+                } 
+            $values         = implode(",",$escapedValues); 
+
+            $query          = "INSERT INTO $table ($columns) VALUES ($values)";
+            $result         = $this->conn->query($query);
+                
+                if ($result) {
+                    return True;
+                }else{
+                    return False;
+                }
+        }
+
     }
 
 
