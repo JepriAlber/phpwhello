@@ -7,18 +7,20 @@ if (isset($_GET['employeeEdit'])) {
 
         $employeeGet    = $crud->getData('employee','employee_id',$_GET['employeeEdit']);
         $employeeId     = $employeeGet[0]->employee_id;
-        $name           = $employeeGet[0]->name;
+        $firtsName      = $employeeGet[0]->first_name;
+        $lastName       = $employeeGet[0]->last_name;
         $age            = $employeeGet[0]->age;
         $devision       = $employeeGet[0]->devision;
         $salary         = $employeeGet[0]->salary;
         $button         = "edit";
         
 }else{
-    $name       ="";
-    $age        ="";
-    $devision   ="";
-    $salary     ="";
-    $button     ="save";
+    $firtsName      = "";
+    $lastName       = "";
+    $age            = "";
+    $devision       ="";
+    $salary         ="";
+    $button         ="save";
 }
 
 ?>
@@ -50,9 +52,13 @@ if (isset($_GET['employeeEdit'])) {
                     <div class="card-body">
 
                         <form class="row g-3" method="POST" action="controller/employeeController.php">
-                        <div class="col-12">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?=$name;?>" autofocus="on" required>
+                        <div class="col-6">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="<?=$firtsName;?>" autofocus="on" required>
+                        </div>
+                        <div class="col-6">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="<?=$lastName;?>" autofocus="on" required>
                         </div>
                         <div class="col-12">
                             <label for="age" class="form-label">Age</label>
@@ -101,7 +107,7 @@ if (isset($_GET['employeeEdit'])) {
                                     foreach($employees as $em): ?>
                                         <tr>
                                             <td><?=$no++;?></td>
-                                            <td><?=$em->name;?></td>
+                                            <td><?=$em->first_name;?> <?=$em->last_name;?></td>
                                             <td><?=$em->age;?></td>
                                             <td align="center">
                                             <div class="btn-group" role="group" aria-label="Basic example">

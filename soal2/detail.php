@@ -38,7 +38,7 @@ $employees  = $crud->getData('employee','employee_id',$employeeId);
                 <h4>Detail Employee</h4>
                 </div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Name        : <?=$em->name;?> </li>
+                        <li class="list-group-item">Name        : <?=$em->first_name;?> <?=$em->last_name;?> </li>
                         <li class="list-group-item">Age         : <?=$em->age;?> </li>
                         <li class="list-group-item">Devision    : <?=$em->devision;?> </li>
                         <li class="list-group-item">Salary      : Rp.<?=number_format($em->salary, 0, ",", ".");?> </li>

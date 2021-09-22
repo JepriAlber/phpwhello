@@ -6,10 +6,11 @@
         
             // ------------tampung data yang dikirim dengan variabel array---------
             $arrData = [
-                'name'      => $_POST['name'],
-                'age'       => $_POST['age'],
-                'devision'  => $_POST['devision'],
-                'salary'    => $_POST['salary'],
+                'first_name'     => ucwords($_POST['first_name']),
+                'last_name'      => ucwords($_POST['last_name']),
+                'age'            => $_POST['age'],
+                'devision'       => ucwords($_POST['devision']),
+                'salary'         => $_POST['salary']
             ];
 
         //---------simpan data dengan method/function store---------
@@ -27,10 +28,11 @@
         $crud = new crudClass();
         
             $data = [
-                'name'      => $_POST['name'],
-                'age'       => $_POST['age'],
-                'devision'  => $_POST['devision'],
-                'salary'    => $_POST['salary']
+                'first_name'     => ucwords($_POST['first_name']),
+                'last_name'      => ucwords($_POST['last_name']),
+                'age'            => $_POST['age'],
+                'devision'       => ucwords($_POST['devision']),
+                'salary'         => $_POST['salary']
             ];
 
         $employeeId = $_POST['id'];
