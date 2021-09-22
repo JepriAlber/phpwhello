@@ -2,6 +2,7 @@
 require_once "model/crudClass.php"; 
 $crud       = new crudClass();
 $employees  = $crud->getData('employee');
+
 // -----------cek apakah data yang individual yang di inginkan------------
 if (isset($_GET['employeeEdit'])) {
 
@@ -107,7 +108,7 @@ if (isset($_GET['employeeEdit'])) {
                                     foreach($employees as $em): ?>
                                         <tr>
                                             <td><?=$no++;?></td>
-                                            <td><?=$em->first_name;?> <?=$em->last_name;?></td>
+                                            <td><?=$crud->getFullName($em->first_name,$em->last_name);?></td>
                                             <td><?=$em->age;?></td>
                                             <td align="center">
                                             <div class="btn-group" role="group" aria-label="Basic example">

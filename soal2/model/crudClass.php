@@ -84,6 +84,12 @@ require_once "connectionClass.php";
                 }
         }
 
+        public function getFullName($firstName, $lastName)
+        {
+            $fullName = $firstName." ".$lastName;
+            return $fullName;
+        }
+
     }
 
 ?>

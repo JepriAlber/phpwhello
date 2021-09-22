@@ -27,9 +27,11 @@ $em     = Employee::findEmployee($employees,$employeeId);
         <h3 class="mt-4">List Employee</h3>
             <div class="card" style="width: 18rem;">
             <div class="card-header">
-                Name    : <?=$em->getname();?>
+                Name    : <?=$em->getFullName();?>
             </div>
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">First Name         : <?=$em->getFirstName();?> </li>
+                    <li class="list-group-item">Last Name         : <?=$em->getLastName();?> </li>
                     <li class="list-group-item">Age         : <?=$em->getAge();?> </li>
                     <li class="list-group-item">Devision         : <?=$em->getDevision();?> </li>
                     <li class="list-group-item">Salery         : Rp.<?=number_format($em->getSalery(), 0, ",", ".");?> </li>
