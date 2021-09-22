@@ -9,13 +9,13 @@ require_once "connectionClass.php";
             parent::__construct();
         }
 
-        public function allData($table, $employeeId = null)
+        public function getData($table, $id = null, $valueId = null)
         {
             // ------cek apakah data yang ingin ditampilkan 1 data atau semua data----------
-                if ($employeeId == null) {
+                if ($id == null&&$valueId == null) {
                     $query      = "SELECT * FROM ".$table;
                 }else{
-                    $query      = "SELECT * FROM ".$table." WHERE employee_id=".$employeeId;
+                    $query      = "SELECT * FROM ".$table." WHERE $id ='".$valueId."'";
                 }
 
                     $result     = $this->conn->query($query);
@@ -28,7 +28,7 @@ require_once "connectionClass.php";
             return $rows;
         }
 
-        public function store($table, $data)
+        public function setStore($table, $data)
         {
             // -----ambil key array untuk dijadikan nama kolom pata tabel yang ingin di inputkan-----
             $columns        = implode(", ",array_keys($data));
@@ -40,11 +40,31 @@ require_once "connectionClass.php";
                     $tempValues[$key] = "'".$this->conn->real_escape_string($data)."'";
                 } 
 
-            $values         = implode(",",$tempValues); 
+            $values         = implode(", ",$tempValues); 
 
             $query          = "INSERT INTO $table ($columns) VALUES ($values)";
+            // ------eksekusi query yang sudah di inginkan----
             $result         = $this->conn->query($query);
-                
+                // ------cek dan beri nilai bali apakah true atau false--------
+                if ($result) {
+                    return True;
+                }else{
+                    return False;
+                }
+        }
+
+        public function setUpdate($table, $data, $id, $valueId)
+        {
+            $query  = "UPDATE $table SET ";
+            foreach ($data as $key => $value) {
+                // ----pastikan data yang akan disimpan aman dan sesuiakan dengan format key='value'---------
+                $temArrayData[] = $key."='".$this->conn->real_escape_string($value)."'";
+            } 
+            $query  .= implode(", ",$temArrayData);
+            $query  .= " WHERE $id='".$valueId."'";
+                // ------eksekusi query yang sudah di inginkan----
+                $result = $this->conn->query($query);
+                // ------cek dan beri nilai bali apakah true atau false--------
                 if ($result) {
                     return True;
                 }else{
@@ -56,16 +76,14 @@ require_once "connectionClass.php";
         {
             $query      = "DELETE FROM $table WHERE $id='".$valueId."'";
             $result     = $this->conn->query($query);
-           
+               // ------cek dan beri nilai bali apakah true atau false--------
                 if ($result) {
                     return True;
                 } else {
                     return False;
                 }
-                
         }
 
     }
-
 
 ?>

@@ -1,7 +1,25 @@
 <?php 
-require_once "crudClass.php"; 
+require_once "model/crudClass.php"; 
 $crud       = new crudClass();
-$employees  = $crud->allData('employee');
+$employees  = $crud->getData('employee');
+// -----------cek apakah data yang individual yang di inginkan------------
+if (isset($_GET['employeeEdit'])) {
+
+        $employeeGet    = $crud->getData('employee','employee_id',$_GET['employeeEdit']);
+        $employeeId     = $employeeGet[0]->employee_id;
+        $name           = $employeeGet[0]->name;
+        $age            = $employeeGet[0]->age;
+        $devision       = $employeeGet[0]->devision;
+        $salary         = $employeeGet[0]->salary;
+        $button         = "edit";
+        
+}else{
+    $name       ="";
+    $age        ="";
+    $devision   ="";
+    $salary     ="";
+    $button     ="save";
+}
 
 ?>
 
@@ -31,26 +49,29 @@ $employees  = $crud->allData('employee');
                     </div>
                     <div class="card-body">
 
-                        <form class="row g-3" method="POST" action="saveEmployee.php">
+                        <form class="row g-3" method="POST" action="controller/employeeController.php">
                         <div class="col-12">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" autofocus="on" required>
+                            <input type="text" class="form-control" id="name" name="name" value="<?=$name;?>" autofocus="on" required>
                         </div>
                         <div class="col-12">
                             <label for="age" class="form-label">Age</label>
-                            <input type="text" class="form-control" id="age" name="age" required>
+                            <input type="text" class="form-control" id="age" name="age" value="<?=$age;?>" required>
                         </div>
                         <div class="col-12">
                             <label for="devision" class="form-label">Devision</label>
-                            <input type="text" class="form-control" id="devision" name="devision" required>
+                            <input type="text" class="form-control" id="devision" name="devision" value="<?=$devision;?>" required>
                         </div>
                         <div class="col-12">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="text" class="form-control" id="salary" name="salary" required>
+                            <input type="text" class="form-control" id="salary" name="salary" value="<?=$salary;?>" required>
                         </div>
                         <div class="col-12">
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="submit" name="save" class="btn btn-primary" onclick="return confirm('Are You Sure?')">Save</button>
+                            <a href="index.php" class="btn btn-secondary">Reset</a>
+                            <?php if(isset($employeeId)): ?>
+                                <input type="hidden" name="id" value="<?=$employeeId;?>">
+                            <?php endif ?>
+                            <button type="submit" name="<?=$button;?>" class="btn btn-primary" onclick="return confirm('Are You Sure?')">Save</button>
                         </div>
                         </form>
                     </div>
@@ -85,8 +106,8 @@ $employees  = $crud->allData('employee');
                                             <td align="center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="detail.php?employee=<?=$em->employee_id;?>" class="btn btn-info btn-sm">Detail</a>
-                                                <a href="edit.php?employee=<?=$em->employee_id;?>" class="btn btn-warning btn-sm">Edit</a>
-                                                <a href="deleteEmployee.php?employee=<?=$em->employee_id;?>" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
+                                                <a href="index.php?employeeEdit=<?=$em->employee_id;?>" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="controller/employeeController.php?employeeDelete=<?=$em->employee_id;?>" class="btn btn-danger btn-sm" onclick="return confirm('Are You Sure?')">Delete</a>
                                             </div>
                                             </td>
                                         </tr>
