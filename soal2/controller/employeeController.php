@@ -1,9 +1,9 @@
 <?php 
     if (isset($_POST['save'])) {
         
-        require_once "../model/crudClass.php";
+        require_once "../model/CrudClass.php";
         // --------instance kan class crudClass dengan variabel crud-------
-        $crud = new crudClass();
+        $crud = new CrudClass();
         
             // ------------tampung data yang dikirim dengan variabel array---------
             $arrData = [
@@ -25,9 +25,9 @@
 
     }else if(isset($_POST['edit'])){
 
-        require_once "../model/crudClass.php";
+        require_once "../model/CrudClass.php";
         // --------instance kan class crudClass dengan variabel crud-------
-        $crud = new crudClass();
+        $crud = new CrudClass();
         
             $data = [
                 'first_name'     => ucwords($_POST['first_name']),
@@ -50,8 +50,8 @@
 
     }else if (isset($_GET['employeeDelete'])) {
         
-        require_once "../model/crudClass.php";
-        $crud           = new crudClass(); 
+        require_once "../model/CrudClass.php";
+        $crud           = new CrudClass(); 
         // --------instance kan class crudClass dengan variabel crud-------
         $employee       = $_GET['employeeDelete'];
 

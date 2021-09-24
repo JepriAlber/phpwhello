@@ -1,7 +1,7 @@
 <?php 
-require_once "model/crudClass.php"; 
+require_once "model/CrudClass.php"; 
 // --------instance kan class crudClass dengan variabel crud-------
-$crud       = new crudClass();
+$crud       = new CrudClass();
 
 $employees  = $crud->getData('employee');
 

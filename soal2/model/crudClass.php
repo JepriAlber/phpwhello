@@ -1,8 +1,8 @@
 <?php 
 
-require_once "connectionClass.php";
+require_once "ConnectionClass.php";
 
-    class crudClass extends connectionClass{
+    class CrudClass extends ConnectionClass{
 
         public function __construct()
         {
@@ -12,7 +12,7 @@ require_once "connectionClass.php";
         public function getData($table, $id = null, $valueId = null)
         {
             // ------cek apakah data yang ingin ditampilkan 1 data atau semua data----------
-                if ($id == null&&$valueId == null) {
+                if ($id == null && $valueId == null) {
                     $query      = "SELECT * FROM ".$table;
                 }else{
                     $query      = "SELECT * FROM ".$table." WHERE $id ='".$valueId."'";

@@ -1,6 +1,6 @@
 <?php 
 
-    class connectionClass
+    class ConnectionClass
     {
         private $host   = "localhost";
         private $user   = "root";

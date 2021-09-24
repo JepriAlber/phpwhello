@@ -4,13 +4,13 @@ if (!isset($_GET['employee'])) {
     echo "<script>window.location='index.php';</script>";
 }
 
-require_once "model/crudClass.php"; 
+require_once "model/CrudClass.php"; 
 // --------untuk mengambil function tambahan yang ingin digunakan--------
 require_once "helpers/helper.php";
 // -------simpan data yang di kirim divariaber $employeeId-------
 $employeeId = $_GET['employee'];
 // --------instance kan class crudClass dengan variabel crud-------
-$crud       = new crudClass();
+$crud       = new CrudClass();
 // --------ambil data yang sesui dengan id diinginkan-------
 $employees  = $crud->getData('employee','employee_id',$employeeId);
 ?>
