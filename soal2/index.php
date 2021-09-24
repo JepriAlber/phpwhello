@@ -1,6 +1,8 @@
 <?php 
 require_once "model/crudClass.php"; 
+// --------instance kan class crudClass dengan variabel crud-------
 $crud       = new crudClass();
+
 $employees  = $crud->getData('employee');
 
 // -----------cek apakah data yang individual yang di inginkan------------
@@ -67,7 +69,7 @@ if (isset($_GET['employeeEdit'])) {
                         </div>
                         <div class="col-12">
                             <label for="age" class="form-label">Age</label>
-                            <input type="text" class="form-control" id="age" name="age" value="<?=$age;?>" required>
+                            <input type="number" class="form-control" id="age" name="age" value="<?=$age;?>" required>
                         </div>
                         <div class="col-12">
                             <label for="devision" class="form-label">Devision</label>
@@ -75,13 +77,15 @@ if (isset($_GET['employeeEdit'])) {
                         </div>
                         <div class="col-12">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="text" class="form-control" id="salary" name="salary" value="<?=$salary;?>" required>
+                            <input type="number" class="form-control" id="salary" name="salary" value="<?=$salary;?>" required>
                         </div>
                         <div class="col-12">
                             <a href="index.php" class="btn btn-secondary">Reset</a>
+                            <!-- ------------jika edit data/data id employee ada maka tampilkan---------------- -->
                             <?php if(isset($employeeId)): ?>
                                 <input type="hidden" name="id" value="<?=$employeeId;?>">
                             <?php endif ?>
+
                             <button type="submit" name="<?=$button;?>" class="btn btn-primary" onclick="return confirm('Are You Sure?')">Save</button>
                         </div>
                         </form>

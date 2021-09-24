@@ -5,9 +5,11 @@ if (!isset($_GET['employee'])) {
 }
 
 require_once "model/crudClass.php"; 
+// --------untuk mengambil function tambahan yang ingin digunakan--------
+require_once "helpers/helper.php";
 // -------simpan data yang di kirim divariaber $employeeId-------
 $employeeId = $_GET['employee'];
-
+// --------instance kan class crudClass dengan variabel crud-------
 $crud       = new crudClass();
 // --------ambil data yang sesui dengan id diinginkan-------
 $employees  = $crud->getData('employee','employee_id',$employeeId);
@@ -34,7 +36,7 @@ $employees  = $crud->getData('employee','employee_id',$employeeId);
     
   
     <div class="container">
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-5">
             
             <?php foreach($employees as $em): ?>
                 <div class="card shadow" style="width: 28rem;">
@@ -44,10 +46,10 @@ $employees  = $crud->getData('employee','employee_id',$employeeId);
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Name        : <?=$crud->getFullName($em->first_name,$em->last_name);?></li>
                         <li class="list-group-item">First Name         : <?=$em->first_name;?></li>
-                        <li class="list-group-item">LastName         : <?=$em->last_name;?></li>
+                        <li class="list-group-item">Last Name         : <?=$em->last_name;?></li>
                         <li class="list-group-item">Age         : <?=$em->age;?> </li>
                         <li class="list-group-item">Devision    : <?=$em->devision;?> </li>
-                        <li class="list-group-item">Salary      : Rp.<?=number_format($em->salary, 0, ",", ".");?> </li>
+                        <li class="list-group-item">Salary      : Rp.<?=rupiah($em->salary);?> </li>
                         <li class="list-group-item"><a href="index.php" class="btn btn-warning btn-sm">Back</a></li>
                     </ul>
                 </div>
